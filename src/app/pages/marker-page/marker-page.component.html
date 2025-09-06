@@ -1,0 +1,35 @@
+<div #map class="h-[60vh] sm:h-[calc(100vh-64px)]"></div>
+
+<section class="h-[40vh] sm:fixed sm:w-[250px] bg-white sm:rounded sm:top-20 sm:left-4 p-5 overflow-y-scroll">
+  <h2 class="text-xl font-bold text-black mb-3">Marcadores</h2>
+
+  <div class="flex flex-col gap-2">
+
+    @for (marker of markers(); track marker.id) {
+    <!-- <div class="form-control">
+      <label class="label cursor-pointer justify-between">
+        <span class="label-text">Red Pill</span>
+        <input type="radio" name="radio-12" checked="checked"
+          class="radio bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600" />
+      </label>
+    </div> -->
+
+    <!-- bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600 -->
+    <div class="form-control" (click)="flyToMarker(marker.mapboxMarker.getLngLat())" (dblclick)="deleteMarker(marker)">
+      <label class="label cursor-pointer flex justify-between items-center">
+        <span class="label-text text-xs text-wrap text-black">{{ marker.mapboxMarker.getLngLat() | json }}</span>
+        <input type="radio" name="radio-12" checked="checked" class="radio"
+          [style.backgroundColor]="marker.mapboxMarker._color"
+          [style.borderColor]="'#FFFFFF'" />
+      </label>
+    </div>
+    }
+
+    @empty {
+    <div class="flex justify-center items-center bg-blue-100 rounded py-3">
+      <p class="text-xs text-accent">Sin marcadores</p>
+    </div>
+    }
+
+  </div>
+</section>

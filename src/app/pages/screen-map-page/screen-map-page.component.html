@@ -1,0 +1,15 @@
+<div #map></div>
+
+<section id="controls">
+  <h2 class="text-2xl font-bold text-black mb-1">
+    Zoom
+    <small class="text-gray-500 font-normal">{{ zoom() | number: '1.0-0' }}</small>
+  </h2>
+  <input type="range" min="3" max="20" [value]="zoom()" class="range range-accent" (input)="zoom.set(+txtZoom.value)"
+    #txtZoom />
+
+  <h2 class="text-2xl font-bold text-black mb-1 mt-3">Coordenadas</h2>
+  <pre class="text-xs text-gray-500 font-normal mb-2">{{
+      { latitude: coordinates().lat | number: '1.4-4', loggitude: coordinates().lng | number: '1.4-4' } | json
+  }}</pre>
+</section>
